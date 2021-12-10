@@ -15,8 +15,10 @@ The emails downloaded can be parsed by the standard Python Parser for their subj
 For the heuristic purpose of training the classfication models, the ground true labels (whether they are related to the oil/gas business) are given by whether the emails contain a term in the oil and gas industry glossary ^ (https://www.dwasolutions.com/images/DWA_Oil_Gas_Glossary.pdf ). It has been compared with a small set (200 emails) of texts labelled by hand and the portion of emails with relevant labels are similar (\~36.8 %). 
 
 For an aggregate understanding of the emails with 'relevant' and 'irrelevant' labels, the wordclouds for them are plotted:
+
 <img src="./wordcloud.png" width="600" >
-In the 'relevant' emails, we can see there are more city names like 'new york' and 'London' and business related terms like 'scheduled outage' and 'natural gas'.
+
+In the 'relevant' emails, we can see there are more city names like 'New York' and 'London' and business related terms like 'scheduled outage' and 'natural gas'.
 
 [a] BiLSTM
 
