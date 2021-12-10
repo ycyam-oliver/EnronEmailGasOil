@@ -32,6 +32,8 @@ Then GloVe embedding is used with the BiLSTM classification in the model 2b's. T
 
 The problems with GloVe are that it cannot deal with the polysemy of words and the word in our dataset may not be covered in its pretrained set of words might. BERT uses WordPiece tokenization scheme which breaks words into subwords and is better deal with these problems. Also its multi-head attention structure makes it the state-of-art NLP model. Indeed the test accuracy can boosted with BERT in our case. Model 2ci uses the original BERT model with one-layer fully connected layer for classification. Since a more complex classification head might be able to deal more more complex task, model 2cii uses a two-layer fully connected classfication head. In both model 2ci and 2cii, the weights in BERT are allowed to be updated. It is useful since BERT is pretrained with general purpose text. Indeed in model 2ciii where the weights in BERT were frozen, the performance is a lot worse.
 
+[d] Ensemble Method
+Different subset of models above were tried in an ensemble method where the final label is determined by voting of the models in the subset. Turned out the test accuracy can be further boosted this way.
 
 Remarks: <br>
 ^ A more proper way for this is to do a weakly supervised learning, when time and resources allow. We can first label certain number of texts (say 1000-2000 of them) by hand and define some labelling functions to further label other texts with some ‘noisy labels’, which can be implemented by the Snorkel library. It has been shown that the accuracy of the classification model can be boosted when the data with teh amount of the noisy labelled data is up to 10x to 50x the hand labelled data.
@@ -51,7 +53,7 @@ Remarks: <br>
 
 \* models picked to be included in the Ensemble model in 2d below
 
-2d_EnsembleMethod.ipynb-> test: 94.82% (Best with a subset with models 2bii, 2ci, 2cii)
+2d_EnsembleMethod.ipynb-> test: (best) 94.82% (obtained using a subset with models 2bii, 2ci, 2cii)
 
 
 (IV) Structure of the Directories
