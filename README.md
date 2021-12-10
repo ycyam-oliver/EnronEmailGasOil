@@ -15,14 +15,18 @@ The emails downloaded can be parsed by the standard Python Parser for their subj
 For the heuristic purpose of training the classfication models, the ground true labels (whether they are related to the oil/gas business) are given by whether the emails contain a term in the oil and gas industry glossary ^ (https://www.dwasolutions.com/images/DWA_Oil_Gas_Glossary.pdf ). It has been compared with a small set (200 emails) of texts labelled by hand and the portion of emails with relevant labels are similar (\~36.8 %). 
 
 For an aggregate understanding of the emails with 'relevant' and 'irrelevant' labels, the wordclouds for them are plotted:
-
 <img src="./wordcloud.png" width="600" >
-
 In the 'relevant' emails, we can see there are more city names like 'new york' and 'London' and business related terms like 'scheduled outage' and 'natural gas'.
+
+[a] BiLSTM
 
 To begin with, a BiLSTM model with embedding in Keras is used for the email classfication. The embedding in Keras does not give any semantic meaning to the embedded word vectors. This is done by model 2a.
 
+[b] GloVe Embedding
+
 Then GloVe embedding is used with the BiLSTM classification in the model 2b's. The embedded vectors by GloVe has semantic meaning. But GloVe is pretrained with some general purpose text and our emails might be more specific to the custom field of gas/oil. So the weights in the embedding in model 2bii and indeed it gives a much higher accuracy than 2bi whose embedding weights are fixed.
+
+[c] BERT
 
 The problems with GloVe are that it cannot deal with the polysemy of words and the word in our dataset may not be covered in its pretrained set of words might. BERT uses WordPiece tokenization scheme which breaks words into subwords and is better deal with these problems. Also its multi-head attention structure makes it the state-of-art NLP model. Indeed the test accuracy can boosted with BERT in our case. Model 2ci uses the original BERT model with one-layer fully connected layer for classification. Since a more complex classification head might be able to deal more more complex task, model 2cii uses a two-layer fully connected classfication head. In both model 2ci and 2cii, the weights in BERT are allowed to be updated. It is useful since BERT is pretrained with general purpose text. Indeed in model 2ciii where the weights in BERT were frozen, the performance is a lot worse.
 
